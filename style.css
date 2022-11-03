@@ -1,0 +1,9 @@
+.event-descriptor {
+  margin-bottom: 20px;
+}
+.event-descriptor-apply-button {
+  padding: 10px;
+  background-color: darkseagreen;
+  font-weight: 300;
+  margin-left: 10px;
+}

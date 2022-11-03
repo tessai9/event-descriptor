@@ -20,8 +20,10 @@ editorArea.insertBefore(templateSelect, editorArea.firstChild);
 // イベントテンプレートのselectタグ生成
 function createTemplateSelect() {
   const parentDiv = document.createElement('div');
+  parentDiv.classList.add('event-descriptor');
   const selectElm = document.createElement('select');
   const applyButtonElm = document.createElement('button');
+  applyButtonElm.classList.add('event-descriptor-apply-button');
   applyButtonElm.innerHTML = "set description";
 
   // ボタンを押したら説明文をセットする
