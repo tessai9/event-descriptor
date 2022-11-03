@@ -1,33 +1,39 @@
 'use strict'
-// import { DESCRIPIONS } from "./descriptions";
 
-const editorArea = document.querySelector('#FieldDescription').closest('#editor_area');
-console.log(editorArea);
+// イベント説明テンプレート
+const DESCRIPIONS = [
+  {
+    name: '共通テンプレート',
+    url: 'https://raw.githubusercontent.com/tessai9/event-description-template/main/common.md'
+  },
+  {
+    name: 'コラボ用テンプレート',
+    url: 'https://raw.githubusercontent.com/tessai9/event-description-template/main/collaboration.md'
+  }
+];
+
+const fieldDescription = document.querySelector('#FieldDescription');
+const editorArea = fieldDescription.closest('#editor_area');
 const templateSelect = createTemplateSelect();
 editorArea.insertBefore(templateSelect, editorArea.firstChild);
 
-// async function getDescriptions() {
-//   const src = chrome.runtime.getURL('src/descriptions.js');
-//   const descriptionsSource = await import(src);
-
-//   return descriptionsSource.DESCRIPIONS;
-// }
-
+// イベントテンプレートのselectタグ生成
 function createTemplateSelect() {
   const parentDiv = document.createElement('div');
   const selectElm = document.createElement('select');
-  // const descriptions = await getDescriptions();
-  const DESCRIPIONS = [
-    {
-      name: '共通テンプレート',
-      url: 'https://raw.githubusercontent.com/tessai9/event-description-template/main/common.md'
-    },
-    {
-      name: 'コラボ用テンプレート',
-      url: 'https://raw.githubusercontent.com/tessai9/event-description-template/main/collaboration.md'
-    }
-  ];
-  
+  const applyButtonElm = document.createElement('button');
+  applyButtonElm.innerHTML = "set description";
+
+  // ボタンを押したら説明文をセットする
+  applyButtonElm.addEventListener('click', async () => {
+    const templateUrl = selectElm.value;
+    await fetch(templateUrl)
+    .then(data => { return data.text(); })
+    .then(description => {
+      fieldDescription.querySelector('textarea').value = description;
+    });
+  });
+
   DESCRIPIONS.forEach(description => {
     const option = document.createElement('option');
     option.setAttribute('value', description.url);
@@ -36,6 +42,7 @@ function createTemplateSelect() {
   });
 
   parentDiv.append(selectElm);
+  parentDiv.append(applyButtonElm);
 
   return parentDiv;
 }
