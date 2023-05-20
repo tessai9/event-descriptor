@@ -3,7 +3,7 @@
 // イベント説明テンプレート
 const DESCRIPIONS = [
   {
-    name: '共通テンプレート',
+    name: '基本テンプレート',
     url: 'https://raw.githubusercontent.com/tessai9/event-description-template/main/common.md'
   },
   {
@@ -24,7 +24,7 @@ function createTemplateSelect() {
   const selectElm = document.createElement('select');
   const applyButtonElm = document.createElement('button');
   applyButtonElm.classList.add('event-descriptor-apply-button');
-  applyButtonElm.innerHTML = "set description";
+  applyButtonElm.innerHTML = "適用する";
 
   // ボタンを押したら説明文をセットする
   applyButtonElm.addEventListener('click', async () => {
