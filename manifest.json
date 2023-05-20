@@ -17,8 +17,8 @@
     {
       "js": ["content_script.js"],
       "css": ["style.css"],
-      "matches": ["http://*/*", "https://*/*", "*://*/*"]
+      "matches": ["http://connpass.com/*", "https://connpass.com/*", "*://connpass.com/*"]
     }
   ],
-  "host_permissions": ["http://*/*", "https://*/*", "*://*/*"]
+  "host_permissions": ["http://connpass.com/*", "https://connpass.com/*", "*://connpass.com/*"]
 }
